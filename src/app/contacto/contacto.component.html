@@ -1,3 +1,12 @@
 <p>
   contacto works!
 </p>
+<h3>Listado de prendas de ropa:</h3>
+<input type="text" [(ngModel)]="prendaGuardar"><button (click)="agregarRopa()">Agregar Prenda</button>
+<p>Prenda que se agregará: <strong>{{prendaGuardar}}</strong></p>
+<ul>
+  <li *ngFor="let prenda of listadoRopa; let i = index;">
+    {{prenda}}
+    <button (click)="eliminarPrenda(i)">Eliminar</button>
+  </li>
+</ul>

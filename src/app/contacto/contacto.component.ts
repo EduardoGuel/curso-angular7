@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component} from '@angular/core';
 
 import { RopaService } from '../services/ropa.service';
 
@@ -9,16 +9,27 @@ import { RopaService } from '../services/ropa.service';
   styleUrls: ['./contacto.component.css'],
   providers: [RopaService]
 })
-export class ContactoComponent implements OnInit {
+export class ContactoComponent {
 
-  listadoRopa = [];
+  listadoRopa:Array<String> = [];
+  prendaGuardar:string; 
 
-  constructor() { 
-    _ropaService: RopaService;
-  }
+  constructor(
+    private _ropaService: RopaService
+  ){}
 
   ngOnInit() {
-    this.listadoRopa = this.RopaService.getRopa();
+    this.listadoRopa = this._ropaService.obtenerRopa();
+    console.log(this.listadoRopa)
+  }
+
+  agregarRopa(){
+    this._ropaService.addRopa(this.prendaGuardar);
+    this.prendaGuardar = null;
+  }
+
+  eliminarPrenda(index:number){
+    this._ropaService.deleteRopa(index);
   }
 
 }
